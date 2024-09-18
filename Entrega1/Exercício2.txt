@@ -1,0 +1,52 @@
+A(#a1, a2, a3)
+B(#a1, b1)
+	a1: FK(A)
+C(#a1)
+	a1: FK(A)
+RI-1: cada a1 em A tem de ocorrer ou em B ou em C mas não em ambos.
+
+
+E(#e1, #e2)
+rCE(#a1, e1, e2, rce1) 
+	a1: FK(C)
+	e1, e2: FK(E) NOT NULL
+
+
+A(#a1, a2, a3)
+F(#f1, #f2, f3)
+G(#g1)
+H(#h1, h2)
+rAF(#a1, #f1, #f2, g1, h1)
+    a1: FK(A)
+    f1, f2: FK(F)
+    g1: FK(G) NOT NULL
+    h1: FK(H)
+RI-2: qualquer f1 em F tem de ocorrer em rAF
+RI-3: qualquer h1 em H tem de ocorrer em rAF
+
+D(#a1, #f1, #f2, #d1)
+    a1, f1, f2: FK(rAF)
+
+
+# acaba aqui
+
+
+
+
+
+
+rAFG(#a1, #f1, #f2, g1)
+	a1: FK(A)
+	f1, f2: FK(F)
+	g1: FK(G) NOT NULL
+F(#f1, #f2, f3)
+G(#g1)
+H(#h1, h2)
+rHrAFG(#h1, #g1, #f1, #f2, #a1)
+	f1, f2, g1, a1: FK(rAFG)
+	h1: FK(H)
+#TODO reverificar as setas escuras/menos escuras
+#TODO relacao rDrHrAFG
+
+
+# nome rAF ou rAFG

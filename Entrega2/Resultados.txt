@@ -1,0 +1,5 @@
+6.1)
+
+Sem nada                    : 65ms
+observacao(parametro, valor): 40ms
+index nas PK's              : 40ms        
